@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TimelineView } from '@/components/timeline/timeline-view'
 import { getTasksForDate } from '@/app/(dashboard)/tasks/actions'
 

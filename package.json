@@ -1,1 +1,7 @@
-{ "name": "learning-os", "private": true }
+{ 
+  "name": "learning-os", 
+  "private": true,
+  "scripts": {
+    "postinstall": "cd apps/web && prisma generate"
+  }
+}

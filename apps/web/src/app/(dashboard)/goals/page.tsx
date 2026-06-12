@@ -19,7 +19,7 @@ export default function GoalsPage() {
         <Target className="w-16 h-16 text-muted-foreground mb-4 opacity-50" />
         <h3 className="text-xl font-semibold mb-2">暂无目标</h3>
         <p className="text-muted-foreground max-w-sm mb-6">
-          "没有目标的人，永远为有目标的人去努力。" 开始设定你的第一个年度或季度目标吧。
+          &quot;没有目标的人，永远为有目标的人去努力。&quot; 开始设定你的第一个年度或季度目标吧。
         </p>
         <Button variant="outline">立即创建</Button>
       </div>

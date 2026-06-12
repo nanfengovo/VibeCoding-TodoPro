@@ -1,4 +1,5 @@
 import { TimelineView } from '@/components/timeline/timeline-view'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getTasksForDate } from '@/app/(dashboard)/tasks/actions'
 
 interface PageProps {
