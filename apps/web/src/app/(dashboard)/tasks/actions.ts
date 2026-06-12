@@ -87,7 +87,7 @@ export async function updateTask(taskId: string, formData: FormData) {
 // ──────────────────────────────────────────
 // Toggle Task Status
 // ──────────────────────────────────────────
-export async function toggleTaskStatus(taskId: string) {
+export async function toggleTaskStatus(taskId: string, newStatus?: string) {
   const userId = await getAuthenticatedUserId()
 
   const task = await prisma.task.findFirst({
@@ -95,12 +95,13 @@ export async function toggleTaskStatus(taskId: string) {
   })
   if (!task) throw new Error('任务不存在')
 
-  const nextStatus =
+  const nextStatus = newStatus || (
     task.status === 'COMPLETED'
       ? 'TODO'
       : task.status === 'TODO'
         ? 'IN_PROGRESS'
         : 'COMPLETED'
+  )
 
   await prisma.task.update({
     where: { id: taskId },

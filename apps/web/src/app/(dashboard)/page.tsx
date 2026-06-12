@@ -6,8 +6,8 @@ export default async function DashboardPage() {
   const tasks = await getTasksForDate(today)
 
   const total = tasks.length
-  const completed = tasks.filter(t => t.status === 'COMPLETED').length
-  const inProgress = tasks.filter(t => t.status === 'IN_PROGRESS').length
+  const completed = tasks.filter((t: any) => t.status === 'COMPLETED').length
+  const inProgress = tasks.filter((t: any) => t.status === 'IN_PROGRESS').length
 
   return (
     <div className="space-y-8 max-w-5xl mx-auto">

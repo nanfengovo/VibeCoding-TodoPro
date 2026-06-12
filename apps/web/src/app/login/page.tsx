@@ -23,9 +23,9 @@ export default function LoginPage() {
     startTransition(async () => {
       const action = isSignup ? signupWithEmail : loginWithEmail
       const result = await action(formData)
-      if (result?.error) {
+      if (result && 'error' in result && result.error) {
         setError(result.error)
-      } else if (result?.success) {
+      } else if (result && 'success' in result && result.success) {
         setSuccess(result.success)
         // Switch to login mode after successful registration so they can log in once confirmed
         setIsSignup(false)

@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 const taskSchema = z.object({
   title: z.string().min(1, '标题不能为空'),
   description: z.string().optional(),
-  priority: z.coerce.number().min(1).max(4).default(4),
+  priority: z.number().min(1).max(4).default(4),
   status: z.enum(['TODO', 'IN_PROGRESS', 'COMPLETED']).default('TODO'),
   // We'll use simple strings for time, to be parsed to Date
   startTimeStr: z.string().optional(),
@@ -37,7 +37,7 @@ export function TaskDialog({ open, onOpenChange, defaultStartTime }: TaskDialogP
   const [error, setError] = useState<string | null>(null)
 
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<TaskFormValues>({
-    resolver: zodResolver(taskSchema),
+    resolver: zodResolver(taskSchema) as any,
     defaultValues: {
       title: '',
       description: '',
@@ -141,7 +141,7 @@ export function TaskDialog({ open, onOpenChange, defaultStartTime }: TaskDialogP
               <Label>优先级</Label>
               <Select 
                 defaultValue={priorityValue.toString()} 
-                onValueChange={(val) => setValue('priority', parseInt(val))}
+                onValueChange={(val) => setValue('priority', Number(val))}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="选择优先级" />
