@@ -11,11 +11,13 @@ import { Sparkles, Loader2 } from 'lucide-react'
 export default function LoginPage() {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
   const [isSignup, setIsSignup] = useState(false)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError(null)
+    setSuccess(null)
     const formData = new FormData(e.currentTarget)
     
     startTransition(async () => {
@@ -23,6 +25,10 @@ export default function LoginPage() {
       const result = await action(formData)
       if (result?.error) {
         setError(result.error)
+      } else if (result?.success) {
+        setSuccess(result.success)
+        // Switch to login mode after successful registration so they can log in once confirmed
+        setIsSignup(false)
       }
     })
   }
@@ -51,6 +57,11 @@ export default function LoginPage() {
             {error && (
               <div className="p-3 bg-destructive/15 text-destructive text-sm rounded-md border border-destructive/20 font-medium">
                 {error}
+              </div>
+            )}
+            {success && (
+              <div className="p-3 bg-green-500/15 text-green-600 dark:text-green-400 text-sm rounded-md border border-green-500/20 font-medium">
+                {success}
               </div>
             )}
             <div className="space-y-2">
