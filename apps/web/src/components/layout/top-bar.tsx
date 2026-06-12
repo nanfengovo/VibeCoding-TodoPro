@@ -1,6 +1,11 @@
+'use client'
+
+import { useState } from 'react'
 import { Search, Bell, Plus } from 'lucide-react'
+import { TaskDialog } from '@/components/tasks/task-dialog'
 
 export function TopBar() {
+  const [taskDialogOpen, setTaskDialogOpen] = useState(false)
   return (
     <header className="flex h-16 items-center justify-between border-b border-border bg-background/80 backdrop-blur-sm px-6">
       {/* Search */}
@@ -14,11 +19,16 @@ export function TopBar() {
         <button className="rounded-lg p-2 hover:bg-accent transition-colors">
           <Bell className="h-5 w-5 text-muted-foreground" />
         </button>
-        <button className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors">
+        <button 
+          onClick={() => setTaskDialogOpen(true)}
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
           <Plus className="h-4 w-4" />
           <span>新建</span>
         </button>
       </div>
+
+      <TaskDialog open={taskDialogOpen} onOpenChange={setTaskDialogOpen} />
     </header>
   )
 }
