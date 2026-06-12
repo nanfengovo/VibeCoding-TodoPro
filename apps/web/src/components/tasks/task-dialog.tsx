@@ -90,7 +90,7 @@ export function TaskDialog({ open, onOpenChange, defaultStartTime }: TaskDialogP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-[500px] max-h-[90vh] overflow-y-auto rounded-2xl">
         <DialogHeader>
           <DialogTitle>新建任务</DialogTitle>
           <DialogDescription>
